@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { StyleSheet, Text, View, Vibration } from "react-native";
-import { ProgressBar } from "react-native-paper";
+import { Button, Icon, ProgressBar } from "react-native-paper";
 import { Countdown } from "../components/CountDown";
 import { RoundedButton } from "../components/RoundedButton";
 import { fontSizes, spacing } from "../utils/sizes";
 import { colors } from "../utils/color";
+import { Timing } from "./Timing";
 
 const ONE_SECOND_IN_MS = 1000;
 const VIBRATION_PATTERN = [
@@ -31,13 +32,22 @@ export const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
           <View style={styles.progressContainer}>
               <ProgressBar progress={progress} color={colors.progressBar} style={{height: spacing.sm}} />
           </View>
+
+          <View style={styles.timerWrapper}>
+              <Timing onChangeTime={setMinutes} />
+          </View>
         
-      <View style={styles.buttomWrapper}>
-        <RoundedButton
-          title={`${isPaused ? "Start" : "pause"}`}
-          onPress={() => setIsPaused(!isPaused)}
-        />
-      </View>
+          <View style={styles.buttomWrapper}>
+              <Button
+                  icon={() => <Icon source={isPaused ? "play-circle" : "pause-circle"} size={70} color="white" />}
+                  onPress={() => setIsPaused(!isPaused)}
+              />
+              <Button
+                  icon={() => <Icon source="alpha-x-circle" size={70} color="white" />}
+                  onPress={() => clearSubject()}
+              />
+          </View>
+          
     </View>
   );
 };
@@ -52,11 +62,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   buttomWrapper: {
-    flex: 0.3,
     flexDirection: "row",
-    padding: 15,
     justifyContent: "center",
-    alignItems: "center",
+      alignItems: "center",
+      paddingTop: spacing.xl,
     },
   countDownSub: {
       paddingTop: spacing.lg,
@@ -73,5 +82,14 @@ const styles = StyleSheet.create({
     progressContainer: {
         paddingTop: spacing.sm,
         margin: spacing.sm,
+    },
+    timerWrapper: {
+        flexDirection: "row",
+        paddingTop: spacing.xl,
+    },
+    clearSubjectWrapper: {
+        flexDirection: "row",
+        justifyContent: "center",
+        paddingTop: spacing.xl,
     },
 });
