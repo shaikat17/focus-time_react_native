@@ -15,6 +15,7 @@ export const Countdown = ({ minutes = 0.1, isPaused, onProgress, onEnd }) => {
   const countDown = () => { 
     setMillis((time) => {
       if (time === 0) {
+        console.log('time is up');
         clearInterval(interval.current);
         onEnd();
         return time;

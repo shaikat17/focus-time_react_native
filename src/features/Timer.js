@@ -1,18 +1,28 @@
 import { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Vibration } from "react-native";
 import { ProgressBar } from "react-native-paper";
 import { Countdown } from "../components/CountDown";
 import { RoundedButton } from "../components/RoundedButton";
 import { fontSizes, spacing } from "../utils/sizes";
 import { colors } from "../utils/color";
 
+const ONE_SECOND_IN_MS = 1000;
+const VIBRATION_PATTERN = [
+    1 * ONE_SECOND_IN_MS,
+    1 * ONE_SECOND_IN_MS,
+    1 * ONE_SECOND_IN_MS,
+    1 * ONE_SECOND_IN_MS,
+    1 * ONE_SECOND_IN_MS,
+];
+
 export const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
     const [isPaused, setIsPaused] = useState(true);
     const [progress, setProgress] = useState(1);
+    const [minutes, setMinutes] = useState(0.1);
   return (
     <View style={styles.container}>
       <View style={styles.countDown}>
-              <Countdown onProgress={setProgress} isPaused={isPaused} />
+              <Countdown minutes={minutes} onProgress={setProgress} isPaused={isPaused} onEnd={() => {Vibration.vibrate(VIBRATION_PATTERN)}} />
               <View style={styles.countDownSub}>
               <Text style={styles.title}>Focusing on:</Text>
               <Text style={styles.task}>{focusSubject}</Text>
