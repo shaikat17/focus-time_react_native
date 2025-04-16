@@ -8,12 +8,19 @@ import {
 } from "react-native";
 import { colors } from "./src/utils/color";
 import { Focus } from "./src/features/Focus";
+import { useState } from "react";
+import { Timer } from "./src/features/Timer";
 
 export default function App() {
+  const [currentSubject, setCurrentSubject] = useState(null);
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="auto" />
-      <Focus />
+      {!currentSubject ? (
+        <Focus addSubject={setCurrentSubject} />
+      ) : (
+        <Timer focusSubject={currentSubject} onTimerEnd={() =>{} } clearSubject={() => {}} />
+      )}
     </SafeAreaView>
   );
 }
@@ -21,6 +28,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.darkBlue
+    backgroundColor: colors.darkBlue,
   },
 });
