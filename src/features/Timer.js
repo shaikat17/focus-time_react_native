@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { StyleSheet, Text, View, Vibration } from "react-native";
 import { Button, Icon, ProgressBar } from "react-native-paper";
+import { Audio } from 'expo-av';
 import { Countdown } from "../components/CountDown";
-import { RoundedButton } from "../components/RoundedButton";
 import { fontSizes, spacing } from "../utils/sizes";
 import { colors } from "../utils/color";
 import { Timing } from "./Timing";
@@ -16,6 +16,14 @@ const VIBRATION_PATTERN = [
   1 * ONE_SECOND_IN_MS,
 ];
 
+// play sound when timer ends
+const playAlarm = async () => {
+  const { sound } = await Audio.Sound.createAsync(
+    require('../../assets/sounds/notify3.mp3')  // adjust path as needed
+  );
+  await sound.playAsync();
+};
+
 export const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
   const [isPaused, setIsPaused] = useState(true);
   const [progress, setProgress] = useState(1);
@@ -25,6 +33,7 @@ export const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
   const onEnd = () => {
     Vibration.vibrate(VIBRATION_PATTERN);
     setIsPaused(true);
+    playAlarm();
     setProgress(1);
     setResetKey((prev) => prev + 1);
   };
