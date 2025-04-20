@@ -2,6 +2,7 @@ import { useState } from "react";
 import { StyleSheet, Text, View, Vibration } from "react-native";
 import { Button, Icon, ProgressBar } from "react-native-paper";
 import { Audio } from 'expo-av';
+import { useKeepAwake } from 'expo-keep-awake';
 import { Countdown } from "../components/CountDown";
 import { fontSizes, spacing } from "../utils/sizes";
 import { colors } from "../utils/color";
@@ -25,6 +26,8 @@ const playAlarm = async () => {
 };
 
 export const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
+  useKeepAwake();
+  
   const [isPaused, setIsPaused] = useState(true);
   const [progress, setProgress] = useState(1);
   const [minutes, setMinutes] = useState(0.1);
