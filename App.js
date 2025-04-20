@@ -1,9 +1,6 @@
 import {
   StyleSheet,
-  Text,
-  View,
   SafeAreaView,
-  Platform,
   StatusBar,
 } from "react-native";
 import { colors } from "./src/utils/color";
