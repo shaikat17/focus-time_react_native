@@ -1,9 +1,7 @@
 import { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Button, TextInput, Icon } from "react-native-paper";
 
-import { colors } from "../utils/color";
-import { RoundedButton } from "../components/RoundedButton";
 import { spacing } from "../utils/sizes";
 
 export const Focus = ({ addSubject }) => {
@@ -25,7 +23,6 @@ export const Focus = ({ addSubject }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
   },
   inputContainer: {
     padding: spacing.md,

@@ -39,6 +39,7 @@ export const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
     playAlarm();
     setProgress(1);
     setResetKey((prev) => prev + 1);
+    onTimerEnd(focusSubject);
   };
   return (
     <View style={styles.container}>
@@ -79,7 +80,7 @@ export const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
           onPress={() => setIsPaused(!isPaused)}
         />
         <Button
-          icon={() => <Icon source="alpha-x-circle" size={70} color="white" />}
+          icon={() => <Icon source="home-circle" size={70} color="white" />}
           onPress={() => clearSubject()}
         />
       </View>
