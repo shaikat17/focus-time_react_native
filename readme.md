@@ -1,4 +1,3 @@
-/*************  ✨ Windsurf Command ⭐  *************/
 # Focus Time
 
 Focus Time is a Pomodoro timer application that helps users stay focused on their tasks.
@@ -7,7 +6,7 @@ Focus Time is a Pomodoro timer application that helps users stay focused on thei
 
 To run the application, follow these steps:
 
-1. Clone the repository using the command `git clone https://github.com/your-username/your-repo-name.git`
+1. Clone the repository using the command `git clone https://github.com/shaikat17/focus-time_react_native.git`
 2. Install the dependencies using the command `npm install`
 3. Run the application using the command `npm start`
 
@@ -31,4 +30,3 @@ Contributions are welcome! If you'd like to contribute to this project, please f
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-/*******  19804d80-b42e-49bc-830d-82bb34b3d7e5  *******/
